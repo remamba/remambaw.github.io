@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
+
+<title>异步编程 | remambaw&#39;s blog</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Remambaw&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">归档</a>
+                
+                    <a class="menu-item" href="/category">目录</a>
+                
+                    <a class="menu-item" href="/tag">标签</a>
+                
+                    <a class="menu-item" href="/about">关于</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Remambaw&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">归档</a>
+                
+                    <a class="menu-item" href="/category">目录</a>
+                
+                    <a class="menu-item" href="/tag">标签</a>
+                
+                    <a class="menu-item" href="/about">关于</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+</div>
+<a onclick="go_top()" class="tocbot-totop">回到顶部</a>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">异步编程</h1>
+            
+                <div class="post-meta">
+                    
+                        作者: Wang Xu
+                    
+					&nbsp;&nbsp;
+                    
+                        <span class="post-time">
+                        日期: September 4, 2019&nbsp;&nbsp;10:23:03
+                        </span>
+                    
+					&nbsp;&nbsp;
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h2 id="浏览器与js引擎"><a href="#浏览器与js引擎" class="headerlink" title="浏览器与js引擎"></a>浏览器与js引擎</h2><p>浏览器是多进程的，拥有若干个tab进程</p>
+<p>WebWorker和SharedWorker</p>
+<h2 id="理解同步与异步"><a href="#理解同步与异步" class="headerlink" title="理解同步与异步"></a>理解同步与异步</h2><p>提到同步与异步的区别是，还有两个容易被混淆的概念需要被提及—阻塞与非阻塞。首先我们理解这两组概念本身的区别</p>
+<ul>
+<li><p>同步(Synchronous)异步(Asynchronous)：关注消息通信机制<br>所谓同步，就是在发出一个调用时，在没有得到结果之前， 该调用就不返回。异步则是相反，调用在发出之后，这个调用就直接返回了，所以没有返回结果</p>
+</li>
+<li><p>阻塞(Blocking)非阻塞(Nonblocking)：关注程序在等待调用结果（消息，返回值）时的状态<br>阻塞调用是指调用结果返回之前，当前线程会被挂起。调用线程只有在得到结果之后才会返回。非阻塞调用指在不能立刻得到结果之前，该调用不会阻塞当前线程。<br>我们大概能够了解这是两个层面上的概念，彼此之间可以相互组合。下面这个场景非常合理巧妙的说明了四种组合方式（摘自知乎，链接在文末）。</p>
+<p>  老张爱喝茶，废话不说，煮开水。出场人物：老张，水壶两把（普通水壶，简称水壶；会响的水壶，简称响水壶）。</p>
+<ol>
+<li>老张把水壶放到火上，立等水开。(同步阻塞)<br>老张觉得自己有点傻</li>
+<li>老张把水壶放到火上，去客厅看电视，时不时去厨房看看水开没有。(同步非阻塞)<br>老张还是觉得自己有点傻，于是变高端了，买了把会响笛的那种水壶。水开之后，能大声发出嘀嘀的噪音。</li>
+<li>老张把响水壶放到火上，立等水开。(异步阻塞)<br>老张觉得这样傻等意义不大</li>
+<li>老张把响水壶放到火上，去客厅看电视，水壶响之前不再去看它了，响了再去拿壶。(异步非阻塞)<br>老张觉得自己聪明了。</li>
+</ol>
+</li>
+</ul>
+<p>如果只是想要了解，至此就够了。但是深究，上面的解释是有漏洞的，更详细的回答来自知乎用户<a href="https://www.zhihu.com/question/19732473/answer/241673170" target="_blank" rel="noopener">萧萧</a>。</p>
+<hr>
+<blockquote>
+<p>IE浏览器延迟加载脚本<br>script标签属性defer规定是否对脚本执行进行延迟，直到页面加载为止。但是只有IE支持。</p>
+</blockquote>
+<hr>
+<h2 id="页面渲染的过程"><a href="#页面渲染的过程" class="headerlink" title="页面渲染的过程"></a>页面渲染的过程</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=<span class="string">"text/javascript"</span> defer=<span class="string">"defer"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<h2 id="引申"><a href="#引申" class="headerlink" title="引申"></a>引申</h2><ol>
+<li>js和css文件引入位置<br>js引导放在body内部最后位置，因为js的计算部阻塞文档流的加载；而css应当放在head头部。因为css在加载过程中不会影响到DOM树的生成，但是会影响到Render树的生成，进而影响到layout，所以一般来说，style的link标签需要尽量放在head里面，因为在解析DOM树的时候是自上而下的，而css样式又是通过异步加载的，这样的话，解析DOM树下的body节点和加载css样式能尽可能的并行，加快Render树的生成的速度，当然，如果css是通过js动态添加进来的，会引起页面的重绘或重新布局。</li>
+</ol>
+<h1 id="相关学习"><a href="#相关学习" class="headerlink" title="相关学习"></a>相关学习</h1><ul>
+<li><a href="https://www.zhihu.com/question/19732473?sort=created" target="_blank" rel="noopener">阻塞非阻塞与同步异步</a></li>
+</ul>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>作者:</span>
+                        <span>Wang Xu</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>本文链接:</span>
+                        <span><a href="http://remambaw.github.io/2019/09/04/异步编程/">http://remambaw.github.io/2019/09/04/异步编程/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>版权声明:</span>
+                        <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>标签:</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/javascript/">javascript</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span> | </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2019/08/26/chrome浏览器功能插件推荐/">google浏览器功能插件推荐（更新中...）</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Wang Xu | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

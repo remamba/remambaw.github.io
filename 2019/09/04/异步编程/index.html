@@ -44,16 +44,16 @@
         <header>
     <nav class="navbar">
         <div class="container">
-            <div class="navbar-header header-logo"><a href="/">Remambaw&#39;s Blog</a></div>
+            <div class="navbar-header header-logo"><a href="/">Bentham&#39;s Blog</a></div>
             <div class="menu navbar-right">
                 
-                    <a class="menu-item" href="/archives">归档</a>
+                    <a class="menu-item" href="/archives">Posts</a>
                 
-                    <a class="menu-item" href="/category">目录</a>
+                    <a class="menu-item" href="/category">Categories</a>
                 
-                    <a class="menu-item" href="/tag">标签</a>
+                    <a class="menu-item" href="/tag">Tags</a>
                 
-                    <a class="menu-item" href="/about">关于</a>
+                    <a class="menu-item" href="/about">About</a>
                 
                 <input id="switch_default" type="checkbox" class="switch_default">
                 <label for="switch_default" class="toggleBtn"></label>
@@ -67,19 +67,19 @@
         <div class="container">
             <div class="navbar-header">
                 <div>
-                    <a href="/">Remambaw&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                    <a href="/">Bentham&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
                 </div>
                 <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
             </div>
             <div class="menu" id="mobile-menu">
                 
-                    <a class="menu-item" href="/archives">归档</a>
+                    <a class="menu-item" href="/archives">Posts</a>
                 
-                    <a class="menu-item" href="/category">目录</a>
+                    <a class="menu-item" href="/category">Categories</a>
                 
-                    <a class="menu-item" href="/tag">标签</a>
+                    <a class="menu-item" href="/tag">Tags</a>
                 
-                    <a class="menu-item" href="/about">关于</a>
+                    <a class="menu-item" href="/about">About</a>
                 
             </div>
         </div>
@@ -99,7 +99,6 @@
         }
     }
 </script>
-
         <div class="main">
             <div class="container">
     
@@ -107,8 +106,12 @@
         <div class="post-toc">
     <div class="tocbot-list">
     </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
 </div>
-<a onclick="go_top()" class="tocbot-totop">回到顶部</a>
 
 <script>
     document.ready(
@@ -161,7 +164,6 @@
     }
 
 </script>
-
     
 
     
@@ -171,15 +173,14 @@
             
                 <div class="post-meta">
                     
-                        作者: Wang Xu
+                        Author: <a itemprop="author" rel="author" href="/">Wang Xu</a>
                     
-					&nbsp;&nbsp;
+
                     
                         <span class="post-time">
-                        日期: September 4, 2019&nbsp;&nbsp;10:23:03
+                        Date: <a href="#">September 4, 2019&nbsp;&nbsp;10:23:03</a>
                         </span>
                     
-					&nbsp;&nbsp;
                     
                 </div>
             
@@ -223,39 +224,45 @@
             <section class="post-copyright">
                 
                     <p class="copyright-item">
-                        <span>作者:</span>
+                        <span>Author:</span>
                         <span>Wang Xu</span>
                     </p>
                 
                 
                     <p class="copyright-item">
-                        <span>本文链接:</span>
+                        <span>Permalink:</span>
                         <span><a href="https://remambaw.github.io/2019/09/04/异步编程/">https://remambaw.github.io/2019/09/04/异步编程/</a></span>
                     </p>
                 
                 
                     <p class="copyright-item">
-                        <span>版权声明:</span>
+                        <span>License:</span>
                         <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
                     </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY<strong>?</strong></strong></span>
+                     </p>
                 
 
             </section>
         
         <section class="post-tags">
             <div>
-                <span>标签:</span>
+                <span>Tag(s):</span>
                 <span class="tag">
                     
                     
-                        <a href="/tags/javascript/">javascript</a>
+                        <a href="/tags/javascript/"># javascript</a>
                     
                         
                 </span>
             </div>
             <div>
                 <a href="javascript:window.history.back();">back</a>
-                <span> | </span>
+                <span>· </span>
                 <a href="/">home</a>
             </div>
         </section>

@@ -149,7 +149,7 @@ template {
   font-weight: 300;
 }
 html {
-  font-family: PingFangSC-Regular, Helvetica, "Helvetica Neue", "Segoe UI", "Hiragino Sans GB", "Source Han Sans CN", "Microsoft YaHei", STHeiti, "WenQuanYi Micro Hei", sans-serif !important;
+  font-family: 'Microsoft Jhenghei', Lantinghei SC, 'lanting', PingFang SC, Seguo UI, Microsoft Yahei, Arial;
 }
 html::-webkit-scrollbar {
   width: 8px;
@@ -216,11 +216,9 @@ a:hover {
   width: 100%;
 }
 .navbar {
-  position: fixed;
   height: 4rem;
   line-height: 4rem;
   width: 100%;
-  background: #292a2d;
 }
 .navbar .container {
   width: auto;
@@ -231,7 +229,6 @@ a:hover {
   justify-content: space-between;
 }
 .main {
-  margin-top: 4rem;
   flex-grow: 1;
   flex-shrink: 0;
   flex-basis: auto;
@@ -466,9 +463,6 @@ input[type="radio"]:not(:checked) + label:after {
 .header-logo a {
   padding: 0;
 }
-.navbar {
-  z-index: 2;
-}
 .navbar .menu a {
   padding: 0 8px;
 }
@@ -482,12 +476,6 @@ input[type="radio"]:not(:checked) + label:after {
 .navbar-header a:hover,
 .navbar .menu a:hover {
   background-color: transparent;
-}
-.navbar-header a {
-  color: #fff;
-}
-.menu .menu-item {
-  color: #fff;
 }
 header label {
   margin-left: 15px;
@@ -1053,11 +1041,6 @@ header label {
 }
 .tag:not(:last-child) a::after {
   content: " / ";
-}
-.tocbot-totop {
-  position: fixed;
-  right: 100px;
-  bottom: 50px;
 }
 .post-toc {
   position: fixed;
